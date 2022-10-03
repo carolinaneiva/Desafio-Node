@@ -40,27 +40,50 @@ Para as perguntas a seguir considere as seguintes tabelas:
 Com base nas tabelas:
 
 1. Monte uma consulta que retorne o nome e idade das pessoas maiores de idade ordenado pela idade em ordem decrescente;
-```SQL
+``` 
+    SELECT Nome, Idade 
+    FROM Pessoas 
+    WHERE Idade>18 
+    ORDER BY Idade DESC
 
 ```
 2. Monte uma consulta que retorne a idade mais alta na tabela;
-```SQL
+``` 
+    SELECT MAX(Idade) 
+    FROM Pessoas
 
 ```
 3. Atualize o nome de todas as pessoas que são menores de idades adicionando “ ( menor de idade ) “ ao nome dela;
-```SQL
+```
+    UPDATE Pessoas 
+    SET  Nome = Nome + ' ( menor de idade ) ' 
+    WHERE Idade < 18
 
 ```
 4. Monte o comando para remover da tabela todas as pessoas que são do Brasil;
-```SQL
+```
+    DELETE FROM Pessoas 
+    WHERE Pais_Origem = 'Brasil'
 
 ```
 5. Quais pessoas já visitaram a França? Monte a consulta que retornará o nome delas;
-```SQL
+```
+    As pessoas que já vizitaram a França são o Alan e a Flavia. Podemos vizualizar isso com a seguinte consulta:
+
+        SELECT Nome 
+        FROM Pessoas FULL OUTER JOIN Paises_Visitados 
+        ON Pessoas.Codigo = Paises_Visitados.Codigo_Pessoa 
+        WHERE Pais_Visitado = 'França'
 
 ```
 6. Quais são as pessoas que não visitaram nenhum pais? Monte a consulta retornando o nome delas;
-```SQL
+```
+    As pessoas que não visitaram nenhum pais são a Isabela e o Marcos. Podemos vizualizar isso com a seguinte consulta:
+
+        SELECT Nome 
+        FROM Pessoas FULL OUTER JOIN Paises_Visitados 
+        ON Pessoas.Codigo = Paises_Visitados.Codigo_Pessoa 
+        WHERE Pais_Visitado IS NULL
 
 ```
 
